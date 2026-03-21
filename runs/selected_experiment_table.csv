@@ -1,0 +1,2 @@
+experiment,why,label,run_name,env_id,replay_ratio,resets_enabled,total_env_steps,final_eval_return,best_eval_return,article_return_at_same_budget,article_source_url,video_path
+Smoke Table,Quick report pipeline check,Smoke run,smoke_test,Pendulum-v1,2,True,1200,-1251.0633544921875,-1251.0633544921875,,,/home/tem_shett/porn/hsehw/RL/paper_nina_arina/runs/smoke_test_seed7/final_episode.mp4
