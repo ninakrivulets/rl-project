@@ -1,0 +1,35 @@
+{
+  "pendulum_rr8": {
+    "env_id": "dm_control/pendulum-swingup-v0",
+    "updates_per_step": 8,
+    "source": "Official results from the authors' repository for Sample-Efficient Reinforcement Learning by Breaking the Replay Ratio Barrier",
+    "source_url": "https://github.com/proceduralia/high_replay_ratio_continuous_control/tree/main/results/exp_truly_scale_dmc_env_name_pendulum-swingup_max_steps_2000000_resets_True_reset_interval_320000_config.updates_per_step_8",
+    "values": {
+      "50000": 191.46,
+      "80000": 391.74,
+      "100000": 462.28
+    }
+  },
+  "pendulum_rr32": {
+    "env_id": "dm_control/pendulum-swingup-v0",
+    "updates_per_step": 32,
+    "source": "Official results from the authors' repository for Sample-Efficient Reinforcement Learning by Breaking the Replay Ratio Barrier",
+    "source_url": "https://github.com/proceduralia/high_replay_ratio_continuous_control/tree/main/results/exp_truly_scale_dmc_env_name_pendulum-swingup_max_steps_2000000_resets_True_reset_interval_80000_config.updates_per_step_32",
+    "values": {
+      "50000": 371.92,
+      "80000": 510.5,
+      "100000": 712.48
+    }
+  },
+  "reacher_rr32": {
+    "env_id": "dm_control/reacher-hard-v0",
+    "updates_per_step": 32,
+    "source": "Official results from the authors' repository for Sample-Efficient Reinforcement Learning by Breaking the Replay Ratio Barrier",
+    "source_url": "https://github.com/proceduralia/high_replay_ratio_continuous_control/tree/main/results/exp_truly_scale_dmc_env_name_reacher-hard_max_steps_2000000_resets_True_reset_interval_80000_config.updates_per_step_32",
+    "values": {
+      "50000": 588.42,
+      "80000": 894.2,
+      "100000": 824.2
+    }
+  }
+}
