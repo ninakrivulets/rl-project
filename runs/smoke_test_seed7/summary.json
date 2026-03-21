@@ -1,0 +1,19 @@
+{
+  "run_name": "smoke_test",
+  "env_id": "Pendulum-v1",
+  "seed": 7,
+  "device": "cpu",
+  "total_env_steps": 1200,
+  "replay_ratio": 2,
+  "resets_enabled": true,
+  "reset_interval_updates": 2000,
+  "final_eval_return": -1251.0633544921875,
+  "best_eval_return": -1251.0633544921875,
+  "final_eval_std": 121.06999206542969,
+  "video_return": -1672.8272705078125,
+  "num_resets": 1,
+  "run_dir": "/home/tem_shett/porn/hsehw/RL/paper_nina_arina/runs/smoke_test_seed7",
+  "video_path": "/home/tem_shett/porn/hsehw/RL/paper_nina_arina/runs/smoke_test_seed7/final_episode.mp4",
+  "curve_path": "/home/tem_shett/porn/hsehw/RL/paper_nina_arina/runs/smoke_test_seed7/learning_curve.png",
+  "checkpoint_path": "/home/tem_shett/porn/hsehw/RL/paper_nina_arina/runs/smoke_test_seed7/checkpoint.pt"
+}
