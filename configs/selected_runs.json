@@ -1,0 +1,102 @@
+{
+  "runs": [
+    {
+      "name": "pendulum_rr8_srsac",
+      "config": "configs/pendulum_rr8_srsac.json"
+    },
+    {
+      "name": "pendulum_rr32_srsac",
+      "config": "configs/pendulum_rr32_srsac.json"
+    },
+    {
+      "name": "pendulum_rr32_sac",
+      "config": "configs/pendulum_rr32_sac.json"
+    },
+    {
+      "name": "reacher_rr32_srsac",
+      "config": "configs/reacher_rr32_srsac.json"
+    },
+    {
+      "name": "lunarlander_rr32_srsac",
+      "config": "configs/lunarlander_rr32_srsac.json"
+    },
+    {
+      "name": "lunarlander_rr32_sac",
+      "config": "configs/lunarlander_rr32_sac.json"
+    }
+  ],
+  "experiments": [
+    {
+      "name": "DMC Pendulum Benchmark",
+      "why": "Самая лёгкая задача из статьи, на ней хорошо видно преимущество high replay ratio с reset-ами уже на 100k шагов.",
+      "rows": [
+        {
+          "label": "Our SR-SAC rr=32",
+          "run": "pendulum_rr32_srsac",
+          "article_ref": "pendulum_rr32",
+          "article_step": 100000
+        }
+      ]
+    },
+    {
+      "name": "DMC Reacher Benchmark",
+      "why": "Вторая статья-совместимая среда с другой динамикой: полезно проверить, что реализация не привязана к одному pendulum-сценарию.",
+      "rows": [
+        {
+          "label": "Our SR-SAC rr=32",
+          "run": "reacher_rr32_srsac",
+          "article_ref": "reacher_rr32",
+          "article_step": 100000
+        }
+      ]
+    },
+    {
+      "name": "Replay Ratio Scaling",
+      "why": "Это центральная идея статьи: при reset-ах можно безопасно поднимать replay ratio.",
+      "rows": [
+        {
+          "label": "Our SR-SAC rr=8",
+          "run": "pendulum_rr8_srsac",
+          "article_ref": "pendulum_rr8",
+          "article_step": 100000
+        },
+        {
+          "label": "Our SR-SAC rr=32",
+          "run": "pendulum_rr32_srsac",
+          "article_ref": "pendulum_rr32",
+          "article_step": 100000
+        }
+      ]
+    },
+    {
+      "name": "Reset Ablation",
+      "why": "Нужна минимальная локальная проверка самой идеи hard reset-ов на одинаковом replay ratio.",
+      "rows": [
+        {
+          "label": "Local SAC rr=32 without resets",
+          "run": "pendulum_rr32_sac"
+        },
+        {
+          "label": "Local SR-SAC rr=32 with resets",
+          "run": "pendulum_rr32_srsac",
+          "article_ref": "pendulum_rr32",
+          "article_step": 100000
+        }
+      ]
+    },
+    {
+      "name": "LunarLanderContinuous Transfer",
+      "why": "Эта среда обязательна по заданию и показывает, что тот же код работает и вне DMC-бенчмарка статьи.",
+      "rows": [
+        {
+          "label": "Local SAC rr=32 without resets",
+          "run": "lunarlander_rr32_sac"
+        },
+        {
+          "label": "Local SR-SAC rr=32 with resets",
+          "run": "lunarlander_rr32_srsac"
+        }
+      ]
+    }
+  ]
+}

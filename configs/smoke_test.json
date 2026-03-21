@@ -1,0 +1,38 @@
+{
+  "seed": 7,
+  "device": "auto",
+  "experiment": {
+    "name": "smoke_test",
+    "output_root": "runs"
+  },
+  "env": {
+    "id": "Pendulum-v1",
+    "kwargs": {}
+  },
+  "algorithm": {
+    "actor_lr": 0.0003,
+    "critic_lr": 0.0003,
+    "alpha_lr": 0.0003,
+    "hidden_dims": [128, 128],
+    "discount": 0.99,
+    "tau": 0.005,
+    "init_temperature": 0.2,
+    "target_entropy": null,
+    "learnable_temperature": true,
+    "log_std_min": -5.0,
+    "log_std_max": 2.0,
+    "replay_size": 50000,
+    "updates_per_step": 2,
+    "resets": true,
+    "reset_interval_updates": 2000
+  },
+  "train": {
+    "total_env_steps": 1200,
+    "start_steps": 128,
+    "start_training_after": 128,
+    "batch_size": 64,
+    "eval_every": 400,
+    "eval_episodes": 3,
+    "video_episodes": 1
+  }
+}
