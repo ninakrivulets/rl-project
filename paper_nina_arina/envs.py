@@ -29,6 +29,12 @@ def make_env(env_config, seed=None, render_mode=None):
     if env_id.startswith("dm_control/"):
         _register_dm_control()
     env = gym.make(env_id, **kwargs)
+    print("env:", env)
+    print("env.observation_space:", getattr(env, "observation_space", None))
+    
+    obs_space = getattr(env, "observation_space", None)
+    shape = getattr(obs_space, "shape", None)
+    print("shape:", shape)
     if not hasattr(env.observation_space, "shape") or len(env.observation_space.shape) != 1:
         env = FlattenObservation(env)
     try:
