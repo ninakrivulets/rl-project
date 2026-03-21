@@ -20,8 +20,8 @@ def _register_dm_control():
     except Exception:
         pass
 
-
 def make_env(env_config, seed=None, render_mode=None):
+    import gym
     env_id = env_config["id"]
     kwargs = dict(env_config.get("kwargs", {}))
     if render_mode is not None:
@@ -31,11 +31,12 @@ def make_env(env_config, seed=None, render_mode=None):
     env = gym.make(env_id, **kwargs)
     print("env:", env)
     print("env.observation_space:", getattr(env, "observation_space", None))
-    
+
     obs_space = getattr(env, "observation_space", None)
     shape = getattr(obs_space, "shape", None)
     print("shape:", shape)
-    if not hasattr(env.observation_space, "shape") or len(env.observation_space.shape) != 1:
+    # FIX IS HERE:
+    if shape is None or len(shape) != 1:
         env = FlattenObservation(env)
     try:
         env.reset(seed=seed)
@@ -46,6 +47,32 @@ def make_env(env_config, seed=None, render_mode=None):
     except Exception:
         pass
     return env
+
+# def make_env(env_config, seed=None, render_mode=None):
+#     env_id = env_config["id"]
+#     kwargs = dict(env_config.get("kwargs", {}))
+#     if render_mode is not None:
+#         kwargs["render_mode"] = render_mode
+#     if env_id.startswith("dm_control/"):
+#         _register_dm_control()
+#     env = gym.make(env_id, **kwargs)
+#     print("env:", env)
+#     print("env.observation_space:", getattr(env, "observation_space", None))
+    
+#     obs_space = getattr(env, "observation_space", None)
+#     shape = getattr(obs_space, "shape", None)
+#     print("shape:", shape)
+#     if not hasattr(env.observation_space, "shape") or len(env.observation_space.shape) != 1:
+#         env = FlattenObservation(env)
+#     try:
+#         env.reset(seed=seed)
+#     except TypeError:
+#         env.reset()
+#     try:
+#         env.action_space.seed(seed)
+#     except Exception:
+#         pass
+#     return env
 
 
 def get_env_specs(env):
