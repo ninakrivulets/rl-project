@@ -19,6 +19,12 @@ def train_from_config(config_path, overrides=None, project_root=None):
     run_dir = make_run_dir(project_root, config)
     device = select_device(config.get("device", "auto"))
     seed_everything(config["seed"])
+    print('name', config["experiment"]["name"])
+    print('env id', config["env"]["id"])
+    print('total_env_steps', config["train"]["total_env_steps"])
+    print("replay_ratio", config["algorithm"]["updates_per_step"])
+    print("resets_enabled", config["algorithm"]["resets"])
+    
 
     env = make_env(config["env"], seed=config["seed"])
     specs = get_env_specs(env)
