@@ -76,6 +76,8 @@ def make_env(env_config, seed=None, render_mode=None):
 
 
 def get_env_specs(env):
+    print(type(env.action_space))
+    print(env.action_space)
     if not isinstance(env.action_space, gym.spaces.Box):
         raise ValueError("This project supports only continuous Box action spaces")
     if not isinstance(env.observation_space, gym.spaces.Box):
