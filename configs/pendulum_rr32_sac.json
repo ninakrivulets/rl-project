@@ -2,11 +2,11 @@
   "seed": 0,
   "device": "auto",
   "experiment": {
-    "name": "pendulum_rr32_sac",
+    "name": "pendulum_fast_sac",
     "output_root": "runs"
   },
   "env": {
-    "id": "dm_control/pendulum-swingup-v0",
+    "id": "Pendulum-v1",
     "kwargs": {}
   },
   "algorithm": {
@@ -22,17 +22,17 @@
     "log_std_min": -5.0,
     "log_std_max": 2.0,
     "replay_size": 200000,
-    "updates_per_step": 32,
+    "updates_per_step": 16,
     "resets": false,
-    "reset_interval_updates": 2560000
+    "reset_interval_updates": 500000
   },
   "train": {
-    "total_env_steps": 100000,
+    "total_env_steps": 30000,
     "start_steps": 1000,
     "start_training_after": 1000,
     "batch_size": 256,
     "eval_every": 5000,
-    "eval_episodes": 10,
+    "eval_episodes": 5,
     "video_episodes": 1
   }
 }
