@@ -21,7 +21,6 @@ def _register_dm_control():
         pass
 
 def make_env(env_config, seed=None, render_mode=None):
-    import gym
     env_id = env_config["id"]
     kwargs = dict(env_config.get("kwargs", {}))
     if render_mode is not None:
