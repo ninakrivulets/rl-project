@@ -22,6 +22,8 @@ python run_selected_experiments.py
 python tools/smoke_test.py
 ```
 
+Так же некоторые эксперименты есть в ipynb ноутбуках.
+
 ## Почему выбраны именно эти эксперименты
 
 1. `DMC Pendulum Benchmark`
