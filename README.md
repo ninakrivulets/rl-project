@@ -26,17 +26,22 @@ python tools/smoke_test.py
 
 ## Почему выбраны именно эти эксперименты
 
+
+
+1. `Replay Ratio Scaling`
+   Это главный тезис статьи: при наличии reset-ов можно поднимать replay ratio заметно выше обычного SAC.
+   Что проверяем: Монотонный рост производительности с увеличением RR при наличии resets.
+
+2. `Online vs Offline RL`
+   Что проверяем: Online RL (SAC) с resets превосходит offline RL (IQL) даже при одинаковых данных.
+
+
+
+## Среды
 1. `DMC Pendulum Benchmark`
    Это одна из самых дешёвых сред из статьи, на ней уже на маленьком бюджете шагов видно, что high replay ratio начинает работать.
 
-2. `Replay Ratio Scaling`
-   Это главный тезис статьи: при наличии reset-ов можно поднимать replay ratio заметно выше обычного SAC.
-
-3. `Reset Ablation`
-   Самая важная локальная sanity-check проверка: при одинаковом replay ratio сравниваем вариант без reset-ов и с reset-ами.
-
-4. `LunarLanderContinuous-v3`
-   Эта среда обязательна по заданию и нужна как внешний тест на переносимость реализации вне DMC.
+2. `LunarLanderContinuous-v3`
 
 ## Что сохраняется
 
