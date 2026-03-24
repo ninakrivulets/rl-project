@@ -1,10 +1,8 @@
-# SR-SAC in `paper_nina_arina`
+# SR-SAC
 
-Проект реализует continuous-control часть статьи `Sample-Efficient Reinforcement Learning by Breaking the Replay Ratio Barrier` именно авторов Pierluca D'Oro, Max Schwarzer, Evgenii Nikishin, Pierre-Luc Bacon, Marc G. Bellemare, Aaron Courville. Основная идея, которую здесь реализуем: `SR-SAC`, то есть `SAC` с высоким replay ratio и периодическими полными hard reset-ами параметров агента.
+Проект реализует continuous-control часть статьи `Sample-Efficient Reinforcement Learning by Breaking the Replay Ratio Barrier`. Основная идея, которую здесь реализуем: `SR-SAC`, то есть `SAC` с высоким replay ratio и периодическими полными hard reset-ами параметров агента.
 
-Код специально написан как аккуратный студенческий проект: отдельные конфиги, `main.py`, скрипт для пакетного запуска экспериментов, notebook под Kaggle, сохранение метрик, чекпоинтов и видео.
-
-## Что запускать
+## Запуски
 
 Один запуск:
 
@@ -29,16 +27,13 @@ python tools/smoke_test.py
 1. `DMC Pendulum Benchmark`
    Это одна из самых дешёвых сред из статьи, на ней уже на маленьком бюджете шагов видно, что high replay ratio начинает работать.
 
-2. `DMC Reacher Benchmark`
-   Это вторая среда из статьи с другой динамикой, чтобы показать, что реализация не заточена под один pendulum-кейс.
-
-3. `Replay Ratio Scaling`
+2. `Replay Ratio Scaling`
    Это главный тезис статьи: при наличии reset-ов можно поднимать replay ratio заметно выше обычного SAC.
 
-4. `Reset Ablation`
+3. `Reset Ablation`
    Самая важная локальная sanity-check проверка: при одинаковом replay ratio сравниваем вариант без reset-ов и с reset-ами.
 
-5. `LunarLanderContinuous-v3`
+4. `LunarLanderContinuous-v3`
    Эта среда обязательна по заданию и нужна как внешний тест на переносимость реализации вне DMC.
 
 ## Что сохраняется
