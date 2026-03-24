@@ -293,14 +293,14 @@ RR=8 > RR=4 > RR=1 (монотонный рост)
 | Replay Ratio | Mean Return | Std | Improvement |
 |--------------|-------------|-----|-------------|
 | RR=1 | **5.9** | 52.0 | baseline |
-| RR=4 | **218.8** | 44.1 | **+3608%** 🚀 |
-| RR=8 | **257.0** | 35.0 | **+4254%** 🚀 |
+| RR=4 | **218.8** | 44.1 | **+3608%** |
+| RR=8 | **257.0** | 35.0 | **+4254%**|
 
 **Визуализация:**
 
 ### 5.3 Анализ
 
-**✅ Гипотеза ПОДТВЕРЖДЕНА:**
+**Гипотеза ПОДТВЕРЖДЕНА:**
 1. **Монотонный рост:** RR=8 > RR=4 > RR=1
 2. **Огромное улучшение:** +3600% при RR=4, +4254% при RR=8
 3. **Снижение вариативности:** Std уменьшается с ростом RR
@@ -314,11 +314,11 @@ RR=8 > RR=4 > RR=1 (монотонный рост)
 ```
 RR=1: нужно 100k steps для достижения return ~6
 RR=8: нужно ~20k steps для достижения return ~6
-→ В 5 раз более sample efficient!
+В 5 раз более sample efficient!
 ```
 
 **Важное наблюдение:**
-Улучшение **НЕ линейное**. RR увеличен в 8 раз, а результат улучшился в 43 раза. Это показывает **синергетический эффект** высокого RR с resets.
+Улучшение **НЕ линейное**. RR увеличен в 8 раз, а результат улучшился в 43 раза.
 
 ### 5.4 Сравнение с оригиналом
 
@@ -338,7 +338,7 @@ RR=8: нужно ~20k steps для достижения return ~6
 3. **Меньший бюджет:** 100k vs 500k steps
 4. **Разный starting point:** LunarLander random policy хуже
 
-**Качественное согласие:** ✅
+**Качественное согласие:** 
 Несмотря на количественные различия, **качественный результат тот же**:
 - Монотонный рост с увеличением RR
 - Значительное улучшение sample efficiency
@@ -391,26 +391,9 @@ SR-SAC >> IQL (даже с resets)
 
 **Визуализация:**
 
-```
-Return
-  150 ┤    ╭────────────────────
-      │   ╱                         SR-SAC (online)
-  100 ┤  ╱
-      │ ╱
-   50 ┤╱
-      │     ╭──────────
-    0 ┼────╯                        IQL (resets)
-      │
-  -50 ┤
-      │           ╭──────────
- -100 ┤──────────╯                  IQL (no resets)
-      └┴────┴────┴────┴────┴────┴────
-      0   20k  40k  60k  80k 100k  steps
-```
-
 ### 6.4 Анализ
 
-**✅ Гипотеза ПОДТВЕРЖДЕНА:**
+** Гипотеза ПОДТВЕРЖДЕНА:
 
 1. **SR-SAC >> IQL:** 
    - SR-SAC (106.8) в 4.8 раза лучше IQL с resets (22.3)
@@ -470,14 +453,14 @@ IQL: "Я консервативен, боюсь overestimate,
 ### 7.1 Ключевые находки
 
 **1. Replay Ratio Scaling работает (Эксп. 1):**
-- ✅ Монотонный рост: RR=8 > RR=4 > RR=1
-- ✅ Огромное улучшение: +4254% при RR=8
-- ✅ Уменьшение вариативности с ростом RR
+- Монотонный рост: RR=8 > RR=4 > RR=1
+- Огромное улучшение: +4254% при RR=8
+- Уменьшение вариативности с ростом RR
 
 **2. Online RL критичен (Эксп. 2):**
-- ✅ SR-SAC (online) >> IQL (offline алг)
-- ✅ Консерватизм IQL мешает в online setting
-- ✅ Resets помогают, но не компенсируют algorithmic mismatch
+- SR-SAC (online) >> IQL (offline алг)
+- Консерватизм IQL мешает в online setting
+- Resets помогают, но не компенсируют algorithmic mismatch
 
 **3. Практические insights:**
 
@@ -530,42 +513,6 @@ IQL: "Я консервативен, боюсь overestimate,
 - Compute: ❌ В 8 раз больше (но это ОК если взаимодействия дороже вычислений)
 - Wall-clock time: ❌ Дольше (sequential updates)
 
-### 7.4 Статистическая значимость
-
-**Эксперимент 1 (RR Scaling):**
-```
-RR=1 vs RR=4:
-  Mean diff: 212.9
-  t-statistic: 7.45
-  p-value: <0.001
-  → Статистически значимо! ✅
-
-RR=4 vs RR=8:
-  Mean diff: 38.2
-  t-statistic: 2.31
-  p-value: 0.045
-  → Значимо на уровне 0.05 ✅
-```
-
-**Эксперимент 2 (Online vs Offline):**
-```
-SR-SAC vs IQL (resets):
-  Mean diff: 84.5
-  t-statistic: 1.89
-  p-value: 0.078
-  → Marginally significant (тренд виден)
-
-IQL (resets) vs IQL (no resets):
-  Mean diff: 94.6
-  t-statistic: 2.03
-  p-value: 0.062
-  → Marginally significant
-```
-
-**Примечание:** Небольшое число seeds (3) ограничивает статистическую мощность, но тренды чёткие.
-
----
-
 ## 8. Сравнение с оригинальной статьёй
 
 ### 8.1 Качественное согласие
@@ -573,12 +520,11 @@ IQL (resets) vs IQL (no resets):
 **Результаты статьи:**
 | Метрика | Статья (DMC15-500k) | Наши (LunarLander-100k) |
 |---------|---------------------|-------------------------|
-| RR scaling работает | ✅ Да (+50% IQM) | ✅ Да (+4254%) |
-| Resets критичны | ✅ Да | ✅ Да |
-| Online > Offline | ✅ Да | ✅ Да |
-| Монотонный рост | ✅ Да | ✅ Да |
+| RR scaling работает | Да (+50% IQM) | Да (+4254%) |
+| Resets критичны | Да | Да |
+| Online > Offline |  Да | Да |
+| Монотонный рост | Да | Да |
 
-**Вывод:** ✅ **Качественно все основные выводы подтверждаются**
 
 ### 8.2 Количественные различия
 
@@ -615,12 +561,12 @@ IQL (resets) vs IQL (no resets):
 
 | Аспект | Воспроизведено | Примечание |
 |--------|----------------|------------|
-| ✅ RR scaling | Да | Даже сильнее чем в статье |
-| ✅ Resets помогают | Да | Подтверждено |
-| ✅ Online > Offline | Да | На IQL |
-| ❌ RR до 128 | Нет | Только до 8 (ресурсы) |
-| ❌ DMC15 benchmark | Нет | 1 среда (ресурсы) |
-| ❌ Atari 100k | Нет | Не реализовывали SPR |
+| RR scaling | Да | Даже сильнее чем в статье |
+| Resets помогают | Да | Подтверждено |
+| Online > Offline | Да | На IQL |
+| RR до 128 | Нет | Только до 8 (ресурсы) |
+| DMC15 benchmark | Нет | 1 среда (ресурсы) |
+| Atari 100k | Нет | Не реализовывали SPR |
 
 ### 8.4 Ограничения воспроизведения
 
@@ -635,7 +581,7 @@ IQL (resets) vs IQL (no resets):
 - Упрощённая среда
 - Не все ablations
 
-**Но:** ✅ Core гипотезы подтверждены надёжно!
+**Но:** Core гипотезы подтверждены надёжно!
 
 ---
 
@@ -644,7 +590,7 @@ IQL (resets) vs IQL (no resets):
 ### 9.1 Главные результаты
 
 **1. SR-SAC работает:**
-- ✅ Replay ratio scaling от 1 до 8 даёт **+4254% улучшение**
+- ✅Replay ratio scaling от 1 до 8 даёт **+4254% улучшение**
 - ✅ Монотонный рост производительности
 - ✅ Снижение вариативности
 
@@ -657,259 +603,3 @@ IQL (resets) vs IQL (no resets):
 - ✅ SR-SAC в 4.8× лучше IQL
 - ✅ Консерватизм offline методов — handicap
 - ✅ Online interaction = continuous supervision
-
-### 9.2 Практическая ценность
-
-**Когда использовать SR-SAC:**
-- ✅ Взаимодействия со средой дорогие (робототехника, sim-to-real)
-- ✅ Есть доступ к вычислениям (GPU/TPU)
-- ✅ Sample efficiency критична
-- ✅ Можно позволить sequential обучение
-
-**Когда НЕ использовать:**
-- ❌ Взаимодействия дешёвые (симуляторы)
-- ❌ Нужна низкая wall-clock latency
-- ❌ Ограниченные вычислительные ресурсы
-- ❌ Real-time обучение
-
-### 9.3 Вклад в понимание
-
-**Теоретический:**
-- Показали importance of plasticity в RL
-- Продемонстрировали trade-off: data vs compute
-- Подтвердили роль online supervision
-
-**Практический:**
-- Чистая реализация SR-SAC
-- Воспроизводимые эксперименты
-- Открытый код для сообщества
-
-### 9.4 Ответы на research questions
-
-**RQ1: Можно ли масштабировать replay ratio выше 1?**
-→ ✅ Да! До 8 (и выше с больше ресурсами)
-
-**RQ2: Критичны ли resets для этого?**
-→ ✅ Да! Без них collapse
-
-**RQ3: Работает ли подход вне DMC?**
-→ ✅ Да! LunarLander подтверждает
-
-**RQ4: Почему online RL лучше offline?**
-→ ✅ Continuous supervision + resets позволяют aggressive learning
-
----
-
-## 10. Ограничения и будущая работа
-
-### 10.1 Ограничения текущей работы
-
-**Ресурсные:**
-1. **Одна основная среда** (LunarLander)
-   - Не покрывает разнообразие DMC15
-   - Может быть среда-специфичные эффекты
-
-2. **Короткий бюджет** (100k vs 500k steps)
-   - Возможно не достигнут asymptotic performance
-   - Меньше статистической мощности
-
-3. **Мало seeds** (3 vs 5-20 в статье)
-   - Ограничивает confidence intervals
-   - Возможна высокая вариативность
-
-**Методологические:**
-1. **Не реализован SPR** для Atari
-   - Не проверили дискретное управление
-   - Soft resets не тестировались
-
-2. **Адаптированные параметры**
-   - Reset interval изменён
-   - Buffer size уменьшен
-   - Возможно не оптимальны
-
-3. **Не все ablations**
-   - Reset interval sweep
-   - Different architectures
-   - Tandem learning
-
-### 10.2 Направления для улучшения
-
-**Краткосрочные (реализуемо сейчас):**
-
-1. **Больше сред:**
-   - Pendulum, Reacher из DMC
-   - Другие Box2D среды
-   - → Показать generalization
-
-2. **Больше seeds:**
-   - 5-10 вместо 3
-   - → Лучшая статистика
-
-3. **Ablation studies:**
-   - Reset interval: [100k, 200k, 400k]
-   - Initial alpha: [0.1, 0.2, 0.5]
-   - Hidden dim: [128, 256, 512]
-
-**Долгосрочные (требуют ресурсов):**
-
-1. **Полный DMC15 benchmark:**
-   - Установить MuJoCo
-   - Запустить все 15 сред
-   - 500k steps каждая
-   - → Полное сравнение с статьёй
-
-2. **Реализовать SR-SPR:**
-   - Atari 100k benchmark
-   - Soft resets (Shrink & Perturb)
-   - CNN encoder
-   - → Дискретное управление
-
-3. **Масштабирование RR:**
-   - Попробовать RR=16, 32, 64
-   - Изучить limits of scaling
-   - → Понять где breakdown
-
-### 10.3 Открытые вопросы
-
-**Теоретические:**
-1. **Почему resets работают?**
-   - Восстановление plasticity
-   - Но почему full reset лучше regularization?
-
-2. **Оптимальная частота resets:**
-   - Зависит ли от среды?
-   - Можно ли adaptive reset schedule?
-
-3. **Limits of RR scaling:**
-   - Есть ли theoretical upper bound?
-   - Что ломается при очень высоком RR?
-
-**Практические:**
-1. **Применимость к другим алгоритмам:**
-   - TD3 + resets?
-   - DDPG + resets?
-   - PPO + resets?
-
-2. **Real-world deployment:**
-   - Как в робототехнике?
-   - Sim-to-real transfer?
-   - Safety concerns?
-
-3. **Computational efficiency:**
-   - Можно ли параллелизовать updates?
-   - Асинхронные resets?
-   - Distributed training?
-
-### 10.4 Возможные расширения
-
-**Научные:**
-- Исследовать soft resets для continuous control
-- Комбинация с model-based RL
-- Lifelong learning с периодическими resets
-
-**Инженерные:**
-- Auto-tuning reset interval
-- Distributed SR-SAC
-- Production-ready implementation
-
-**Приложения:**
-- Sim-to-real robotic manipulation
-- Autonomous driving simulators
-- Game AI
-
----
-
-## Приложения
-
-### A. Детали реализации
-
-**Optimizer settings:**
-```python
-actor_optimizer = Adam(lr=3e-4, betas=(0.9, 0.999))
-critic_optimizer = Adam(lr=3e-4, betas=(0.9, 0.999))
-alpha_optimizer = Adam(lr=3e-4, betas=(0.9, 0.999))
-```
-
-**Network initialization:**
-```python
-# Orthogonal initialization for hidden layers
-def init_weights(m):
-    if isinstance(m, nn.Linear):
-        torch.nn.init.orthogonal_(m.weight, gain=np.sqrt(2))
-        torch.nn.init.constant_(m.bias, 0.0)
-```
-
-**Evaluation protocol:**
-- Deterministic policy (mean action)
-- 10 episodes per evaluation
-- Seed control for reproducibility
-
-### B. Computational Resources
-
-**Hardware:**
-- GPU: NVIDIA GPU (Kaggle/Colab)
-- RAM: 12-16 GB
-- Storage: ~1 GB for all experiments
-
-**Time:**
-- Эксп 1 (RR Scaling): ~6-8 часов
-- Эксп 2 (Online vs Offline): ~4-5 часов
-- Total: ~10-13 часов GPU time
-
-**Optimization:**
-- JIT compilation для ускорения
-- Vectorized evaluation
-- Эффективный sampling из buffer
-
-### C. Воспроизводимость
-
-**Для точного воспроизведения:**
-
-```bash
-# 1. Клонировать репозиторий
-git clone https://github.com/ninakrivulets/rl-project
-cd rl-project
-
-# 2. Установить зависимости
-pip install -r requirements.txt
-
-# 3. Запустить smoke test
-python tools/smoke_test.py
-
-# 4. Запустить эксперименты
-python run_selected_experiments.py
-```
-
-**Seeds для воспроизведения:**
-- Эксп 1: seeds [0, 1, 2]
-- Эксп 2: seeds [0, 1, 2]
-
-**Ожидаемые результаты:**
-- Эксп 1: RR=8 должен быть ~250±50
-- Эксп 2: SR-SAC должен быть ~100±100
-
-### D. Ссылки
-
-**Статья:**
-- Paper: https://openreview.net/forum?id=OpC-9aBBVJe
-- arXiv: https://arxiv.org/abs/2210.14562
-
-**Код:**
-- Авторская реализация: https://github.com/proceduralia/high_replay_ratio_continuous_control
-- Наша реализация: https://github.com/ninakrivulets/rl-project
-
-**Среды:**
-- LunarLander: https://gymnasium.farama.org/environments/box2d/lunar_lander/
-- DMC: https://github.com/deepmind/dm_control
-
----
-
-## Благодарности
-
-Спасибо авторам оригинальной статьи за открытую публикацию кода и детальное описание методологии.
-
----
-
-**Дата завершения:** 2024  
-**Версия отчёта:** 1.0  
-**Контакт:** [email]
