@@ -1,0 +1,19 @@
+{
+  "run_name": "pendulum_fast_srsac",
+  "env_id": "Pendulum-v1",
+  "seed": 0,
+  "device": "cuda",
+  "total_env_steps": 30000,
+  "replay_ratio": 16,
+  "resets_enabled": true,
+  "reset_interval_updates": 500000,
+  "final_eval_return": -96.93994140625,
+  "best_eval_return": -96.88163757324219,
+  "final_eval_std": 48.15026092529297,
+  "video_return": -0.6949108242988586,
+  "num_resets": 0,
+  "run_dir": "/kaggle/working/rl-project/runs/pendulum_fast_srsac_seed0",
+  "video_path": "/kaggle/working/rl-project/runs/pendulum_fast_srsac_seed0/final_episode.mp4",
+  "curve_path": "/kaggle/working/rl-project/runs/pendulum_fast_srsac_seed0/learning_curve.png",
+  "checkpoint_path": "/kaggle/working/rl-project/runs/pendulum_fast_srsac_seed0/checkpoint.pt"
+}
